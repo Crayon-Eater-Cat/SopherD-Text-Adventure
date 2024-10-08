@@ -7,20 +7,25 @@
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Derek be blind to colors red and green\n\n\n\n\n");
-            string error = "Unknown answer";
-            string answer = "Please type 'Yes' or 'No'...";
-            int progress = 0;
-            string choice1;
+            string error = "Unknown answer, check your spelling and capitalization";
+            string answer = "Type 'Yes' or 'No'";
+            string progress;
             string carry;
             string name;
             string output = "";
-            List<string> deny = [ "Nah", "No", "No thank you"];
+            List<string> deny = [ "Nah", "No", "No thank you", "No thanks", "Nope"];
             List<string> respond = ["Just say yes for once"];
-            List<string> respondTail = [", for the love of whatever you consider holy"];
+            List<string> respondTail = [", for the love of whatever you consider holy."];
             int noCounter = 0;
             string rude;
-            int stage = 0;
+            int stage = 1;
             if (stage == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Restarting");
+                stage++;
+            }
+            if (stage == 1)
             {
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -84,35 +89,54 @@
                     "You have never seen these… things, before. You feel you would remember if you had seen and felt such beautiful scenery.*");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("No's: " + noCounter);
-                Console.WriteLine("Stage " + stage + " completed");
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Welcome to our world. The French have taken over our land and we must push them out. \n" +
-                    "The Monarchs have the material funds and the Catholics have the spiritual funds, all at your disposal. Will you help us?");
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Please type 'Yes' or 'No'...");
+                Console.WriteLine("Stage 0" + stage + " completed");
+                Console.WriteLine("Type 'Proceed' or 'Restart'");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                stage++;
-            }
-            if (stage == 1)
-            {
-                choice1 = Console.ReadLine();
-                if (choice1 == "Yes")
+                progress = Console.ReadLine();
+                if (progress == "Proceed")
                 {
-                
+                    stage++;
+                    progress = "";
                 }
-                if (deny.Contains(choice1))
+                if (progress == "Restart")
                 {
+                    stage = 0;
+                    progress = "";
+                }
+            }
+            if (stage == 2)
+            {
+                rude = "";
+                noCounter = 0;
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\nWelcome to our world. The French have taken over our land and we must push them out. \n" +
+                    "The Monarchs have the material funds and the Catholics have the spiritual funds, all at your disposal. Will you help us?");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(answer);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                rude = Console.ReadLine();
+                if (deny.Contains(rude))
+                {
+                    rude = "";
                     noCounter++;
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("\nWelp, you don't really have a choice... Anyways");
+                }
+                if (rude == "Yes")
+                {
+                    rude = "";
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("\nThank you very much. You'll be rewarded greatly in the after math");
                 }
                 else
                 {
                     Console.WriteLine(error);
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine(answer);
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    choice1 = Console.ReadLine();
+                    rude = Console.ReadLine();
                 }
             }
 
