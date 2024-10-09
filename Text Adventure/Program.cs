@@ -12,7 +12,8 @@
             string progress;
             string carry;
             string name;
-            string output = "";
+            string nickname;
+            int chosen;
             List<string> deny = [ "Nah", "No", "No thank you", "No thanks", "Nope"];
             List<string> respond = ["Just say yes for once"];
             List<string> respondTail = [", for the love of whatever you consider holy."];
@@ -95,15 +96,28 @@
                 Console.WriteLine("Type 'Proceed' or 'Restart'");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 progress = Console.ReadLine();
-                if (progress == "Proceed")
+                while (true)
                 {
-                    stage++;
-                    progress = "";
-                }
-                if (progress == "Restart")
-                {
-                    stage = 0;
-                    progress = "";
+                    if (progress == "Proceed")
+                    {
+                        stage++;
+                        progress = "";
+                        break;
+                    }
+                    if (progress == "Restart")
+                    {
+                        stage = 0;
+                        progress = "";
+                        break;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(error);
+                        Console.WriteLine("Type 'Proceed' or 'Restart'");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        progress = Console.ReadLine();
+                    }
                 }
             }
             if (stage == 2)
@@ -117,27 +131,57 @@
                 Console.WriteLine(answer);
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 rude = Console.ReadLine();
-                if (deny.Contains(rude))
+                while (true)
                 {
-                    rude = "";
-                    noCounter++;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("\nWelp, you don't really have a choice... Anyways");
+                    if (deny.Contains(rude))
+                    {
+                        rude = "";
+                        noCounter++;
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\nWelp, you don't really have a choice... Anyways");
+                        break;
+                    }
+                    if (rude == "Yes")
+                    {
+                        rude = "";
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\nThank you very much. You'll be rewarded greatly in the after math");
+                        break;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(error);
+                        Console.WriteLine(answer);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        rude = Console.ReadLine();
+                    }
                 }
-                if (rude == "Yes")
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\nNow, we need you to choose a nickname. We can't have others knowing your true name.");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                nickname = Console.ReadLine();
+                while (true)
                 {
-                    rude = "";
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("\nThank you very much. You'll be rewarded greatly in the after math");
-                }
-                else
-                {
-                    Console.WriteLine(error);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(answer);
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    rude = Console.ReadLine();
-                }
+                    if (deny.Contains(nickname)) 
+                    {
+                        nickname = "";
+                        noCounter++;
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\nYou don't have a choice");
+                    }
+                    if (nickname == "")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\nFine, I'll choose one for you.");
+                        break;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("You will now be refered to as " + nickname);
+                        break;
+                    }
             }
 
 
