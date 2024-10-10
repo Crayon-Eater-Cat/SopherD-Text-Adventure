@@ -7,12 +7,14 @@
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Derek be blind to colors red and green\n\n\n\n\n");
+
             string error = "Unknown answer, check your spelling and capitalization";
             string answer = "Type 'Yes' or 'No'";
             string progress;
             string carry;
             string name;
             string nickname;
+            List<string> rndName = ["Meadow", "Thomas", "Gabriel", "Mervielle", "Elina", "Oscar", "Derek", "Joshua", "Rain", "Nelson", "Ruth", "Dylan"];
             int chosen;
             List<string> deny = [ "Nah", "No", "No thank you", "No thanks", "Nope"];
             List<string> respond = ["Just say yes for once"];
@@ -20,6 +22,7 @@
             int noCounter = 0;
             string rude;
             int stage = 1;
+
             if (stage == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -28,6 +31,7 @@
             }
             if (stage == 1)
             {
+                Console.Title = ("Section 1");
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Salutations, new user. Thou art named...");
@@ -122,6 +126,8 @@
             }
             if (stage == 2)
             {
+                Console.Clear();
+                Console.Title = ("Section 2");
                 rude = "";
                 noCounter = 0;
                 Console.ForegroundColor = ConsoleColor.Magenta;
