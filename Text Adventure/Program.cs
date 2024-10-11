@@ -15,8 +15,10 @@
             string name;
             string nickname;
             List<string> rndName = ["Meadow", "Thomas", "Gabriel", "Mervielle", "Elina", "Oscar", "Derek", "Joshua", "Rain", "Nelson", "Ruth", "Dylan"];
-            int chosen;
-            List<string> deny = [ "Nah", "No", "No thank you", "No thanks", "Nope"];
+            Random rng = new Random(); 
+            int rndNum = rng.Next(12);
+            string chosen;
+            List<string> deny = ["Nah", "No", "No thank you", "No thanks", "Nope"];
             List<string> respond = ["Just say yes for once"];
             List<string> respondTail = [", for the love of whatever you consider holy."];
             int noCounter = 0;
@@ -169,7 +171,7 @@
                 nickname = Console.ReadLine();
                 while (true)
                 {
-                    if (deny.Contains(nickname)) 
+                    if (deny.Contains(nickname))
                     {
                         nickname = "";
                         noCounter++;
@@ -180,6 +182,8 @@
                     {
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("\nFine, I'll choose one for you.");
+
+                        Console.WriteLine("Here, " + rndName[rndNum] + " is your nickname");
                         break;
                     }
                     else
@@ -188,10 +192,21 @@
                         Console.WriteLine("You will now be refered to as " + nickname);
                         break;
                     }
+                }
+                Console.WriteLine("The French have resurrected Napoleon with state of the art technology as a super-human version of himself. \n" +
+                    "His chosen, Queenie, is ruthless and constantly shouts “I am your queenie, bow before me”. You yourself must have a chosen as well. \n" +
+                    "This chosen will execute and manage tasks for you and be your voice to the public. \n" +
+                    "You must choose between the: \n(1) Brazilian drunkard \n(2) The professional russian bear wrestler (Rooskiiy Chell) \n(3) or el maestro de codificación \n(4) Crazian neko \n(5) Ruth");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Type 1 to 5 to choose the corrosponding chosen");
+                chosen = Console.ReadLine();
+                while (true)
+                {
+
+                }
+
+                Console.ForegroundColor = ConsoleColor.White;
             }
-
-
-            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
