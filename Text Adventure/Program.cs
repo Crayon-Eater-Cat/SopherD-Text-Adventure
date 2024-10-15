@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Text_Adventure
 {
@@ -13,7 +14,6 @@ namespace Text_Adventure
         //}
 
         //Season season = Season.Winter;
-
         struct Character
         {
             public string named;
@@ -21,15 +21,9 @@ namespace Text_Adventure
         }
         static void Main(string[] args)
         {
-            
-            Console.WriteLine("Testing message");
-            Color();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Derek be blind to colors red and green\n\n\n\n\n");
-
             bool toggle = true;
             string error = "Unknown answer, check your spelling and capitalization";
-            string answer = "Type 'Yes' or 'No'";
+            string answer = "Try again'";
             string progress;
             string carry;
             string name;
@@ -45,23 +39,34 @@ namespace Text_Adventure
                 "Mizu kudasai. This crazy neko (Name by another person, not me) is thirsty. Neko will help manage your supplies.", 
                 "Never quite being able to see clear, she has learned to adapt. She will help manage your strategies."];
             List<string> deny = ["Nah", "No", "No thank you", "No thanks", "Nope"];
-            List<string> respond = ["Just say yes for once"];
-            List<string> respondTail = [", for the love of whatever you consider holy."];
+            //List<string> color = [ConsoleColor.White, ConsoleColor.Red];
+            //List<string> respond = ["Just say yes for once"];
+            //List<string> respondTail = [", for the love of whatever you consider holy."];
             int noCounter = 0;
             string rude;
             int stage = 1;
+            
+            Console.WriteLine("Testing message");
+            Derek();
+            Console.WriteLine("Derek be blind to colors red and green\n\n\n\n\n");
 
+            //Stage 0 currently does not work
             if (stage == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Restarting");
+                Console.ReadKey();
                 stage++;
             }
+            //Stage 1 is complete and is primarily responsible for introductions.
             if (stage == 1)
             {
+                //Console.ForegroundColor = color[0];
+                //Console.WriteLine("testing");
                 Console.Title = ("Section 1");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                System();
+                Console.WriteLine("Capitalize your words... Please... No worky if lower cased...");
+                Thing();
                 Console.WriteLine("Salutations, new user. Thou art named...");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 name = Console.ReadLine();
@@ -146,14 +151,13 @@ namespace Text_Adventure
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine(error);
-                        Console.WriteLine("Type 'Proceed' or 'Restart'");
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Uhoh();
+                        Player();
                         progress = Console.ReadLine();
                     }
                 }
             }
+            //Stage 2 is complete and is primarily responsible for introducing The Chosen options, with 5 chosen to choose from.
             if (stage == 2)
             {
                 Console.Clear();
@@ -163,11 +167,12 @@ namespace Text_Adventure
                 Console.WriteLine("Stage 01 completed");
                 rude = "";
                 noCounter = 0;
+                //noCounter.ToString();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\nWelcome to our world. The French have taken over our land and we must push them out. \n" +
                     "The Monarchs have the material funds and the Catholics have the spiritual funds, all at your disposal. Will you help us?");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(answer);
+                Console.WriteLine("Please type 'Yes' or 'No'");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 rude = Console.ReadLine();
                 while (true)
@@ -189,10 +194,7 @@ namespace Text_Adventure
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine(error);
-                        Console.WriteLine(answer);
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Uhoh();
                         rude = Console.ReadLine();
                     }
                 }
@@ -227,10 +229,12 @@ namespace Text_Adventure
                 Console.WriteLine("The French have resurrected Napoleon with state of the art technology as a super-human version of himself. \n" +
                     "His chosen, Queenie, is ruthless and constantly shouts “I am your queenie, bow before me”. You yourself must have a chosen as well. \n" +
                     "This chosen will execute and manage tasks for you and be your voice to the public. \n" +
-                    "You must choose between the: \n(1) Brazilian drunkard \n(2) The professional russian bear wrestler (Rooskiiy Chell) \n(3) or el maestro de codificación \n(4) Crazian neko \n(5) Ruth");
+                    "You must choose between the: \n(1) Brazilian drunkard \n(2) The professional russian bear wrestler (Rooskiiy Chell) \n(3) el maestro de codificación \n(4) Crazian neko \n(5) Ruth");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Type 1 to 5 to choose the corrosponding chosen");
+                Console.WriteLine("Type 1 to 5 to choose the corresponding chosen");
+                Player();
                 rude = Console.ReadLine();
+                Thing();
                 toggle = true;
                 while (toggle)
                 {
@@ -238,46 +242,48 @@ namespace Text_Adventure
                     {
                         rude = "";
                         noCounter++;
-                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Thing();
                         Console.WriteLine("\nKinda have to choose...");
-                        break;
                     }
+                    Player();
                     if (rude == "1")
                     {
                         rude = "";
                         chosen = chosened[0];
                         Console.WriteLine(chosened[0] + " will be your chosen");
+                        toggle = false;
                     }
                     if (rude == "2")
                     {
                         rude = "";
                         chosen = chosened[1];
                         Console.WriteLine(chosened[1] + " will be your chosen");
+                        toggle = false;
                     }
                     if (rude == "3")
                     {
                         rude = "";
                         chosen = chosened[2];
                         Console.WriteLine(chosened[2] + " will be your chosen");
+                        toggle = false;
                     }
                     if (rude == "4")
                     {
                         rude = "";
                         chosen = chosened[3];
                         Console.WriteLine(chosened[3] + " will be your chosen");
+                        toggle = false;
                     }
                     if (rude == "5")
                     {
                         rude = "";
                         chosen = chosened[4];
                         Console.WriteLine(chosened[4] + " will be your chosen");
+                        toggle = false;
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine(error);
-                        Console.WriteLine(answer);
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Uhoh();
                         rude = Console.ReadLine();
                     }
                 }
@@ -302,10 +308,7 @@ namespace Text_Adventure
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine(error);
-                        Console.WriteLine("Type 'Proceed' or 'Restart'");
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Uhoh();
                         progress = Console.ReadLine();
                     }
                 }
@@ -319,7 +322,40 @@ namespace Text_Adventure
             Console.ForegroundColor = ConsoleColor.Green;
             current = Console.ForegroundColor;
         }
-
+        static void Uhoh()
+        {
+            string error = "Unknown answer, check your spelling and capitalization";
+            string answer = "Try again";
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(error);
+            Console.WriteLine(answer);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+        static void Derek()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.BackgroundColor = ConsoleColor.Green;
+        }
+        static void Thing()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+        static void System()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+        static void Player()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+        static void Defualt()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
         enum colors
         {
             Red,
@@ -328,7 +364,6 @@ namespace Text_Adventure
             Blue,
             Magenta
         }
-
         static ConsoleColor current;
     }
 }
