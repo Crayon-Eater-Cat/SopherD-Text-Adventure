@@ -65,7 +65,7 @@ namespace Text_Adventure
                 //Console.WriteLine("testing");
                 Console.Title = ("Section 1");
                 System();
-                Console.WriteLine("Capitalize your words... Please... No worky if lower cased...");
+                Console.WriteLine("Capitalize your words... Please... No worky if lower cased...\nAlso, the restart doesn't work, close and reopen the game when needed or completed.");
                 Thing();
                 Console.WriteLine("Salutations, new user. Thou art named...");
                 Console.ForegroundColor = ConsoleColor.Yellow;
